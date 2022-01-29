@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-
 import Logo from '../../olx-logo.png';
 import { FirebaseContext } from '../../store/FirebaseContext';
 import './Signup.css';
+import { addDoc, collection, setDoc } from 'firebase/firestore';
+import { firestore } from '../../firebase/config';
+import {useNavigate} from 'react-router-dom'
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [number, setNumber] = useState('')
@@ -16,19 +19,19 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
 
+  createUserWithEmailAndPassword(auth, email, password)
+      .then(async(userCredential) => {
+        const docRef = await addDoc(collection(firestore, "users"), {
+          id: userCredential.user.uid,
+          username: username,
+          phone: number,
+        });
+        console.log("Document written with ID: ", docRef.id);
+        
+      }).then(()=>{
+        navigate('/login');
+      })
   }
 
 
