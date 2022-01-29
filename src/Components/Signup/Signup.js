@@ -6,7 +6,7 @@ import { FirebaseContext } from '../../store/FirebaseContext';
 import './Signup.css';
 import { addDoc, collection, setDoc } from 'firebase/firestore';
 import { firestore } from '../../firebase/config';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -20,16 +20,16 @@ export default function Signup() {
     e.preventDefault()
     const auth = getAuth();
 
-  createUserWithEmailAndPassword(auth, email, password)
-      .then(async(userCredential) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
         const docRef = await addDoc(collection(firestore, "users"), {
           id: userCredential.user.uid,
           username: username,
           phone: number,
         });
         console.log("Document written with ID: ", docRef.id);
-        
-      }).then(()=>{
+
+      }).then(() => {
         navigate('/login');
       })
   }
