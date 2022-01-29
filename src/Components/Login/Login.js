@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
-import { FirebaseContext } from '../../store/FirebaseContext'
+import { FirebaseContext } from '../../store/Context'
 
 
 import Logo from '../../olx-logo.png';

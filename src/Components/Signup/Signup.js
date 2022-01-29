@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import Logo from '../../olx-logo.png';
-import { FirebaseContext } from '../../store/FirebaseContext';
+import { FirebaseContext } from '../../store/Context';
 import './Signup.css';
 import { addDoc, collection, setDoc } from 'firebase/firestore';
 import { firestore } from '../../firebase/config';
