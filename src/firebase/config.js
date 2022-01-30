@@ -1,5 +1,7 @@
 import * as firebase from "firebase/app"
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 require('firebase/auth')
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -15,3 +17,4 @@ const firebaseConfig = {
 
 export default firebase.initializeApp(firebaseConfig)
 export const firestore=getFirestore()
+export const storage = getStorage();
