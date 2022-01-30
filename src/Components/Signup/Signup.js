@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import Logo from '../../olx-logo.png';
-import { FirebaseContext } from '../../store/Context';
 import './Signup.css';
 import { addDoc, collection } from 'firebase/firestore';
 import { firestore } from '../../firebase/config';
@@ -14,16 +13,15 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [number, setNumber] = useState('')
   const [password, setPassword] = useState('')
-  const { firebase } = useContext(FirebaseContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const auth = getAuth();
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
+      .then((userCredential) => {
         userCredential.user.displayName=username
-        const docRef = await addDoc(collection(firestore, "users"), {
+        const docRef = addDoc(collection(firestore, "users"), {
           id: userCredential.user.uid,
           username: username,
           phone: number,
@@ -40,7 +38,7 @@ export default function Signup() {
   return (
     <div>
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} alt=''></img>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
@@ -93,7 +91,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a onClick={()=>{navigate('/login')}}>Login</a>
+        <a href='/login'>Login</a>
       </div>
     </div>
   );

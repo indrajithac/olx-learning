@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
-import { FirebaseContext } from '../../store/Context'
 
 
 import Logo from '../../olx-logo.png';
@@ -22,7 +21,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
+        //const user = userCredential.user;
         // ...
       }).then(() => { alert("Logged In") }).then(() => {
         navigate('/');
@@ -31,13 +30,14 @@ function Login() {
           const errorCode = error.code;
           const errorMessage = error.message;
           alert(errorMessage)
+          console.log(errorCode);
         })
 
   }
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} alt=''></img>
         <form onSubmit={handleLogin}>
           <label htmlFor="fname">Email</label>
           <br />
@@ -65,7 +65,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a onClick={()=>{navigate('/signup')}}>Signup</a>
+        <a href='/signup'>Signup</a>
       </div>
     </div>
   );

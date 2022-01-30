@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
-import { AuthContext, FirebaseContext } from '../../store/Context'
+import { AuthContext} from '../../store/Context'
 import { useContext } from 'react/cjs/react.development';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from 'firebase/firestore';
@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Create = () => {
-  const { firebase } = useContext(FirebaseContext)
   const { user } = useContext(AuthContext)
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
@@ -35,6 +34,8 @@ const Create = () => {
           createdAt:date.toDateString()
         });
         console.log('File available at', downloadURL);
+        console.log("Document written with ID: ", docRef.id);
+
       }).then(()=>navigate('/'))
     })
 
