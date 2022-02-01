@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 function Header() {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate();
+  console.log(user);
 
   return (
     <div className="headerParentDiv">
@@ -43,7 +44,7 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>{user ? user.email : <span onClick={() => navigate('/login')}>Login</span>}</span>
+          <span>{user ? `Welcome ${user.displayName}` : <span onClick={() => navigate('/login')}>Login</span>}</span>
           <hr />
         </div>
         <div>

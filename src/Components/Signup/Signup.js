@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 
 import Logo from '../../olx-logo.png';
 import './Signup.css';
@@ -20,14 +20,20 @@ export default function Signup() {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        userCredential.user.displayName=username
-        const docRef = addDoc(collection(firestore, "users"), {
-          id: userCredential.user.uid,
-          username: username,
-          phone: number,
-        });
+        async function uploadData() {
+          const docRef =await addDoc(collection(firestore, "users"), {
+            id: userCredential.user.uid,
+            username: username,
+            phone: number,
+          });
+          console.log("Document written with ID: ", docRef.id);
+          updateProfile(auth.currentUser, {
+            displayName: username})
+
+        }
+        uploadData()
+        
         console.log(userCredential);
-        console.log("Document written with ID: ", docRef.id);
 
       }).then(() => {
         navigate('/login');
