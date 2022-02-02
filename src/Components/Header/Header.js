@@ -20,7 +20,7 @@ function Header() {
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
+        <div className="brandName" onClick={()=>navigate('/')}>
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">
@@ -47,7 +47,7 @@ function Header() {
           <span>{user ? `Welcome ${user.displayName}` : <span onClick={() => navigate('/login')}>Login</span>}</span>
           <hr />
         </div>
-        <div>
+        <div className='logoutPage'>
           {user && <span onClick={() => {
             const auth = getAuth();
             signOut(auth).then(() => {

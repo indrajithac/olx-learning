@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.brandName{
+  cursor: pointer;
+}
+
 .placeSearch {
   width: 16em;
   height: 48px;
@@ -95,6 +99,7 @@
 }
 
 .language svg {
+  width: auto;
 }
 
 .span {
@@ -118,6 +123,10 @@
 
 .sellMenu {
   position: relative;
+  cursor: pointer;
+}
+
+.logoutPage{
   cursor: pointer;
 }
 

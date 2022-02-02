@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { firestore } from '../../firebase/config';
 import { collection, getDocs } from "firebase/firestore";
 import Heart from '../../assets/Heart';
 import './Post.css';
+import { PostContext } from '../../store/PostContext';
+import { useNavigate } from 'react-router-dom'
+
 
 function Posts() {
   const [products, setProducts] = useState([])
+  const { postDetails, setPostDetails } = useContext(PostContext)
+ 
+  const navigate = useNavigate();
+
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -18,10 +27,14 @@ function Posts() {
       })
       console.log(allPost);
       setProducts(allPost)
-  
+
     }
     fetchData();
-  },[])
+  }, [])
+
+  useEffect(()=>{
+    //console.log(postDetails);
+  },[postDetails])
 
   return (
     <div className="postParentDiv">
@@ -34,6 +47,11 @@ function Posts() {
           {products.map(product => {
             return <div
               className="card"
+              onClick={() => {
+                setPostDetails(product)
+                navigate('/view')
+              }
+              }
             >
               <div className="favorite">
                 <Heart></Heart>
@@ -59,8 +77,8 @@ function Posts() {
           <span>Fresh recommendations</span>
         </div>
         <div className="cards">
-          
-        {products.map((product) => {
+
+          {products.map((product) => {
             return <div
               className="card"
             >
