@@ -24,8 +24,8 @@ const Create = () => {
     const storage = getStorage()
     const storageRef = ref(storage, `/image/${image.name}`);
     uploadBytes(storageRef, image).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
-        const docRef =addDoc(collection(firestore, "products"), {
+      getDownloadURL(snapshot.ref).then(async(downloadURL) => {
+        const docRef =await addDoc(collection(firestore, "products"), {
           name,
           category,
           price,

@@ -15,6 +15,7 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login'
 import Create from './Pages/Create'
 import ViewPost from './Pages/ViewPost';
+import Favorite from './Pages/Favorite'
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/sell' element={<Create />} />
               <Route path='/view' element={<ViewPost />} />
+              <Route path='/favorite' element={<Favorite/>} />
+ 
             </Routes>
           </Router>
         </Search>
