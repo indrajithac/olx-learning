@@ -50,6 +50,10 @@
   align-items: center;
   justify-content: space-between;
 }
+.productSearch ::selection {
+  border: 2px solid #eb77eb;
+  border-radius: 4px;
+}
 
 .productSearch .input {
   width: 100%;
@@ -78,7 +82,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);  
   fill: white;
   
 }

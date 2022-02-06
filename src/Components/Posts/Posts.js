@@ -50,32 +50,35 @@ function Posts() {
               return product
             } else if (product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
               return product
-            }else if (product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
+            } else if (product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
               return product
             }
           }).map(product => {
             return <div
               className="card"
-              onClick={() => {
+            >
+              <span className="favorite" onClick={() => console.log("fav")}>
+                <Heart></Heart>
+              </span>
+              <div onClick={() => {
                 setPostDetails(product)
                 navigate('/view')
               }
               }
-            >
-              <div className="favorite">
-                <Heart></Heart>
+              >
+                <div className="image">
+                  <img src={product.url} alt="" />
+                </div>
+                <div className="content">
+                  <p className="rate">&#x20B9; {product.price}</p>
+                  <span className="kilometer">{product.category}</span>
+                  <p className="name"> {product.name}</p>
+                </div>
+                <div className="date">
+                  <span>{product.createdAt}</span>
+                </div>
               </div>
-              <div className="image">
-                <img src={product.url} alt="" />
-              </div>
-              <div className="content">
-                <p className="rate">&#x20B9; {product.price}</p>
-                <span className="kilometer">{product.category}</span>
-                <p className="name"> {product.name}</p>
-              </div>
-              <div className="date">
-                <span>{product.createdAt}</span>
-              </div>
+
             </div>
           })}
 

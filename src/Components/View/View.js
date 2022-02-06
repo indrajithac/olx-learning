@@ -24,11 +24,12 @@ function View() {
         setUserDetails(doc.data())
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
+        
       });
     }
-    console.log(userDetails);
+    //console.log(userDetails);
     fetchData();
-  })
+  },[userDetails,postDetails])
 
   return (
     <div className="viewParentDiv">
