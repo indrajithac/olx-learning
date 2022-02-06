@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthContext } from './store/Context'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Post from './store/PostContext';
+import Search from './store/SearchContext';
+
 
 /**
  * ?  =====Import Components=====
@@ -34,15 +36,17 @@ function App() {
   return (
     <div>
       <Post>
-        <Router>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/sell' element={<Create />} />
-            <Route path='/view' element={<ViewPost />} />
-          </Routes>
-        </Router>
+        <Search>
+          <Router>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/sell' element={<Create />} />
+              <Route path='/view' element={<ViewPost />} />
+            </Routes>
+          </Router>
+        </Search>
       </Post>
 
     </div>

@@ -5,12 +5,13 @@ import Heart from '../../assets/Heart';
 import './Post.css';
 import { PostContext } from '../../store/PostContext';
 import { useNavigate } from 'react-router-dom'
+import { SearchContext } from '../../store/SearchContext';
 
 
 function Posts() {
   const [products, setProducts] = useState([])
   const { postDetails, setPostDetails } = useContext(PostContext)
- 
+  const { searchTerm } = useContext(SearchContext)
   const navigate = useNavigate();
 
 
@@ -32,9 +33,9 @@ function Posts() {
     fetchData();
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     //console.log(postDetails);
-  },[postDetails])
+  }, [postDetails])
 
   return (
     <div className="postParentDiv">
@@ -44,7 +45,15 @@ function Posts() {
           <span>View more</span>
         </div>
         <div className="cards">
-          {products.map(product => {
+          {products.filter((product) => {
+            if (searchTerm === "") {
+              return product
+            } else if (product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return product
+            }else if (product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return product
+            }
+          }).map(product => {
             return <div
               className="card"
               onClick={() => {

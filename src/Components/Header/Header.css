@@ -80,6 +80,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   fill: white;
+  
 }
 
 .language {
@@ -119,6 +120,10 @@
 
 .loginPage a{
   text-decoration: none;
+}
+
+.loginPage span{
+  cursor: pointer;
 }
 
 .sellMenu {

@@ -9,11 +9,13 @@ import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext } from '../../store/Context';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
+import { SearchContext } from '../../store/SearchContext';
 
 
 
 function Header() {
   const { user } = useContext(AuthContext)
+  const {setSearchTerm} =useContext(SearchContext)
   const navigate = useNavigate();
   console.log(user);
 
@@ -33,6 +35,7 @@ function Header() {
             <input
               type="text"
               placeholder="Find car,mobile phone and more..."
+              onChange={(e)=>setSearchTerm(e.target.value)}
             />
           </div>
           <div className="searchAction">
@@ -45,7 +48,7 @@ function Header() {
         </div>
         <div className="loginPage">
           <span>{user ? `Welcome ${user.displayName}` : <span onClick={() => navigate('/login')}>Login</span>}</span>
-          <hr />
+          
         </div>
         <div className='logoutPage'>
           {user && <span onClick={() => {
@@ -61,11 +64,11 @@ function Header() {
         </div>
 
 
-        <div className="sellMenu">
+        <div className="sellMenu" onClick={()=>navigate('/sell')}>
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
-            <span onClick={()=>navigate('/sell')}>SELL</span>
+            <span >SELL</span>
           </div>
         </div>
       </div>
