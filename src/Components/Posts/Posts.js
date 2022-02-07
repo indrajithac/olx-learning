@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { firestore } from '../../firebase/config';
 import { collection, getDocs } from "firebase/firestore";
-import Heart from '../../assets/Heart';
+import Heart from '../../assets/HeartOff';
 import './Post.css';
 import { PostContext } from '../../store/PostContext';
-import { useNavigate } from 'react-router-dom'
-import { SearchContext } from '../../store/SearchContext';
+
+import Card from './Card';
+import {FavoriteContext} from '../../store/FavoriteContext'
 
 
 function Posts() {
   const [products, setProducts] = useState([])
   const { postDetails, setPostDetails } = useContext(PostContext)
-  const { searchTerm } = useContext(SearchContext)
-  const navigate = useNavigate();
-
+  const {favorites,setFavorites}=useContext(FavoriteContext)
 
 
 
@@ -37,6 +36,13 @@ function Posts() {
     //console.log(postDetails);
   }, [postDetails])
 
+  
+  const addFavorites=(product)=>{
+    const newFavoriteList=[...favorites,product]
+    setFavorites(newFavoriteList)
+    console.log(newFavoriteList);
+  }
+
   return (
     <div className="postParentDiv">
       <div className="moreView">
@@ -45,71 +51,16 @@ function Posts() {
           <span>View more</span>
         </div>
         <div className="cards">
-          {products.filter((product) => {
-            if (searchTerm === "") {
-              return product
-            } else if (product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return product
-            } else if (product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return product
-            }
-          }).map(product => {
-            return <div
-              className="card"
-            >
-              <span className="favorite" onClick={() => console.log("fav")}>
-                <Heart></Heart>
-              </span>
-              <div onClick={() => {
-                setPostDetails(product)
-                navigate('/view')
-              }
-              }
-              >
-                <div className="image">
-                  <img src={product.url} alt="" />
-                </div>
-                <div className="content">
-                  <p className="rate">&#x20B9; {product.price}</p>
-                  <span className="kilometer">{product.category}</span>
-                  <p className="name"> {product.name}</p>
-                </div>
-                <div className="date">
-                  <span>{product.createdAt}</span>
-                </div>
-              </div>
-
-            </div>
-          })}
-
+          <Card products={products} handleFavoritesClick={addFavorites} setPostDetails={setPostDetails} favoriteComponent={Heart}/>
         </div>
       </div>
+
       <div className="recommendations">
         <div className="heading">
           <span>Fresh recommendations</span>
         </div>
         <div className="cards">
-
-          {products.map((product) => {
-            return <div
-              className="card"
-            >
-              <div className="favorite">
-                <Heart></Heart>
-              </div>
-              <div className="image">
-                <img src={product.url} alt="" />
-              </div>
-              <div className="content">
-                <p className="rate">&#x20B9; {product.price}</p>
-                <span className="kilometer">{product.category}</span>
-                <p className="name"> {product.name}</p>
-              </div>
-              <div className="date">
-                <span>{product.createdAt}</span>
-              </div>
-            </div>
-          })}
+         <Card products={products} setPostDetails={setPostDetails} favoriteComponent={Heart}/>
         </div>
       </div>
     </div>

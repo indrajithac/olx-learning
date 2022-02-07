@@ -29,7 +29,7 @@ function View() {
     }
     //console.log(userDetails);
     fetchData();
-  },[userDetails,postDetails])
+  },[])
 
   return (
     <div className="viewParentDiv">
