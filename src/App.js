@@ -5,7 +5,6 @@ import { AuthContext } from './store/Context'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Post from './store/PostContext';
 import Search from './store/SearchContext';
-import Favorite from './store/FavoriteContext';
 
 
 /**
@@ -16,7 +15,7 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login'
 import Create from './Pages/Create'
 import ViewPost from './Pages/ViewPost';
-
+import Favorite from './Pages/Favorite'
 
 function App() {
   const { setUser } = useContext(AuthContext)
@@ -38,19 +37,17 @@ function App() {
     <div>
       <Post>
         <Search>
-          <Favorite>
-            <Router>
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/signup' element={<Signup />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/sell' element={<Create />} />
-                <Route path='/view' element={<ViewPost />} />
-                <Route path='/favorite' element={<Favorite />} />
+          <Router>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/sell' element={<Create />} />
+              <Route path='/view' element={<ViewPost />} />
+              <Route path='/favorite' element={<Favorite />} />
 
-              </Routes>
-            </Router>
-          </Favorite>
+            </Routes>
+          </Router>
         </Search>
       </Post>
 

@@ -1,13 +1,9 @@
-import React, { useContext } from 'react';
+import React  from 'react';
 import './Favorite.css'
 import Card from '../Posts/Card';
-import {FavoriteContext} from '../../store/FavoriteContext'
-import { PostContext } from '../../store/PostContext';
 
 
 function Favorite() {
-    const {favorites}=useContext(FavoriteContext)
-    const {setPostDetails}=useContext(PostContext)
     
 
     return (
@@ -18,7 +14,7 @@ function Favorite() {
                     <span>Favorites</span>
                 </div>
                 <div className="cards">
-                <Card products={favorites} setPostDetails={setPostDetails}/>
+                {/* <Card products={favorites} setPostDetails={setPostDetails}/> */}
                 </div>
             </div>
         </div>

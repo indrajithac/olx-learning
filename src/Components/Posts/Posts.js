@@ -1,19 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { firestore } from '../../firebase/config';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs,setDoc,doc } from "firebase/firestore";
 import Heart from '../../assets/HeartOff';
 import './Post.css';
 import { PostContext } from '../../store/PostContext';
 
 import Card from './Card';
-import {FavoriteContext} from '../../store/FavoriteContext'
 
 
 function Posts() {
   const [products, setProducts] = useState([])
   const { postDetails, setPostDetails } = useContext(PostContext)
-  const {favorites,setFavorites}=useContext(FavoriteContext)
-
+  const [favorites,setFavorites]=useState([])
 
 
   useEffect(() => {
@@ -60,7 +58,7 @@ function Posts() {
           <span>Fresh recommendations</span>
         </div>
         <div className="cards">
-         <Card products={products} setPostDetails={setPostDetails} favoriteComponent={Heart}/>
+         <Card products={favorites} setPostDetails={setPostDetails} handleFavoritesClick={addFavorites} favoriteComponent={Heart}/>
         </div>
       </div>
     </div>
