@@ -55,7 +55,7 @@ function Posts() {
 
 
   const addFavorites = (product) => {
-    const newFavoriteList = [...favorites, product]
+    const newFavoriteList = [product]
     setFavorites(newFavoriteList)
     console.log(newFavoriteList);
   }
