@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const Card = (props) => {
+const Card = (props,index) => {
     const navigate = useNavigate();
     const FavoriteComponent=props.favoriteComponent
 
@@ -11,7 +11,7 @@ const Card = (props) => {
         <>
             {props.products.map(product => {
                 return <div
-                    className="card"
+                    className="card" 
                 >
                     <span className="favorite" onClick={() => props.handleFavoritesClick(product)}>
                         <FavoriteComponent/>
