@@ -5,6 +5,7 @@ import Heart from '../../assets/HeartOff';
 import './Post.css';
 import { PostContext } from '../../store/PostContext';
 import { AuthContext } from '../../store/Context'
+import { useNavigate } from 'react-router-dom'
 
 import Card from './Card';
 
@@ -15,6 +16,7 @@ function Posts() {
   const [currentUser, setCurrentUser] = useState([])
   const { postDetails, setPostDetails } = useContext(PostContext)
   const [favorites, setFavorites] = useState([])
+  const navigate = useNavigate();
 
 
 
@@ -81,6 +83,7 @@ function Posts() {
           id: fav.id
         })
         console.log("Document written with ID: ", docRef.id);
+        navigate('/favorite')
 
 
 
