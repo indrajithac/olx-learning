@@ -66,14 +66,14 @@ function Posts() {
     //console.log(...currentUser);
     console.log(favorites);
     currentUser.map(async (data) => {
-      favorites.map(async(fav) => {
+      favorites.map(async (fav) => {
         //console.log(fav.name);
-        console.log(data.id );
+        console.log(data.id);
 
         console.log(fav);
-        
 
-        const docRef =await addDoc(collection(firestore, 'users', data.id, 'favorites'), {          
+
+        const docRef = await addDoc(collection(firestore, 'users', data.id, 'favorites'), {
           name: fav.name,
           category: fav.category,
           price: fav.price,
@@ -84,13 +84,7 @@ function Posts() {
         })
         console.log("Document written with ID: ", docRef.id);
         navigate('/favorite')
-
-
-
-       })
-
-
-
+      })
     })
   }, [favorites])
 
