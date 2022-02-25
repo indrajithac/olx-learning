@@ -27,16 +27,18 @@
   
   .favorites .cards {
     display: flex;
+    display: flex;
+  flex-flow: row wrap;
   }
   
   .moreView .cards {
-    white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    display: flex;
+  flex-flow: row wrap;
   }
   
   .card {
     margin-right: 15px;
+    margin-bottom: 15px;
     padding: 13px;
     max-width: 222px;
     width: 222px;
@@ -50,6 +52,7 @@
       z-index: 7;
       top: 11px;
       right: 0;
+      
   }
   
   .card .favorite .button{
