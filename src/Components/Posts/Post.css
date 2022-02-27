@@ -26,18 +26,22 @@
 }
 
 .moreView .cards {
-  white-space: nowrap;
+  display: flex;
+  flex-flow: row wrap;
+  
+  /* white-space: nowrap;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: hidden; */
 }
 
 .card {
   margin-right: 15px;
+  margin-top: 15px;
   padding: 13px;
   max-width: 222px;
   width: 222px;
   height: 270px;
-  display: inline-block;
+  
   cursor: pointer;
 }
 
